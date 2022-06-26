@@ -16,6 +16,7 @@ run:
       -p 8096:8096 \
       --device /dev/fuse \
       --cap-add SYS_ADMIN \
+      --privileged \
       --restart unless-stopped \
       jellyfin-s3fs
 
