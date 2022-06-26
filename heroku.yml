@@ -1,0 +1,22 @@
+build:
+  docker:
+    web: Dockerfile
+run:
+  web: \
+    docker run \
+      --name=jellyfin-s3fs \
+      -e PUID=1000 \
+      -e PGID=1000 \
+      -e AWS_STORAGE_BUCKET_NAME=$AWS_STORAGE_BUCKET_NAME \
+      -e AWS_ACCESS_KEY_ID=$AWS_ACCESS_KEY_ID \
+      -e AWS_SECRET_ACCESS_KEY=$AWS_SECRET_ACCESS_KEY \
+      -e AWS_S3_MOUNTPOINT=$AWS_S3_MOUNTPOINT \
+      -e AWS_REGION=$AWS_REGION \
+      -e TZ=$TZ \
+      -p 8096:8096 \
+      --device /dev/fuse \
+      --cap-add SYS_ADMIN \
+      --restart unless-stopped \
+      jellyfin-s3fs
+
+  # web: bundle exec puma -C config/puma.rb

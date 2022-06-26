@@ -1,0 +1,14 @@
+#!/usr/bin/with-contenv bash
+
+# create directories
+mkdir -p \
+    /config/{log,data/transcodes,cache} \
+    /data \
+    /transcode
+
+# permissions
+chown abc:abc \
+    /config \
+    /config/* \
+    /config/data/transcodes \
+    /transcode
