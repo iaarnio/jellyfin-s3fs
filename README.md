@@ -31,6 +31,16 @@ docker run \
 ```
 Note: Some environments require also --privileged flag.
 
+## Parameters related to S3FS
+
+| Parameter | Function |
+| :----: | --- |
+| `-e AWS_STORAGE_BUCKET_NAME` | The S3 bucket name. E.g. myvideobucket |
+| `-e AWS_ACCESS_KEY_ID` | The AWS user account name |
+| `-e AWS_SECRET_ACCESS_KEY` | The AWS user account password |
+| `-e AWS_S3_MOUNTPOINT=$AWS` | Where is file system S3 bucket will me mounted. E.g. /media |
+| `-e AWS_REGION=$AWS_REGION` | The AWS region where S3 bucket is hosted. E.g. eu-north-1 |
+
 ## Parameters related to Jellyfin
 
 Container images are configured using parameters passed at runtime (such as those above). These parameters are separated by a colon and indicate `<external>:<internal>` respectively. For example, `-p 8080:80` would expose port `80` from inside the container to be accessible from the host's IP on port `8080` outside the container.
@@ -48,16 +58,6 @@ Container images are configured using parameters passed at runtime (such as thos
 | `-v /config` | Jellyfin data storage location. *This can grow very large, 50gb+ is likely for a large collection.* |
 | `-v /data/tvshows` | Media goes here. Add as many as needed e.g. `/data/movies`, `/data/tv`, etc. |
 | `-v /data/movies` | Media goes here. Add as many as needed e.g. `/data/movies`, `/data/tv`, etc. |
-
-## Parameters related to S3FS
-
-| Parameter | Function |
-| :----: | --- |
-| `-e AWS_STORAGE_BUCKET_NAME` | The S3 bucket name. E.g. myvideobucket |
-| `-e AWS_ACCESS_KEY_ID` | The AWS user account name |
-| `-e AWS_SECRET_ACCESS_KEY` | The AWS user account password |
-| `-e AWS_S3_MOUNTPOINT=$AWS` | Where is file system S3 bucket will me mounted. E.g. /media |
-| `-e AWS_REGION=$AWS_REGION` | The AWS region where S3 bucket is hosted. E.g. eu-north-1 |
 
 ## Optional Parameters
 
