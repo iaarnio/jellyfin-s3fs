@@ -11,12 +11,10 @@ LABEL maintainer="thelamer"
 ARG DEBIAN_FRONTEND="noninteractive"
 ENV NVIDIA_DRIVER_CAPABILITIES="compute,video,utility"
 
-
 ######################
 # S3FS
 ######################
 RUN \
-  echo "********** S3FS BUILD "********** && \
   export DEBIAN_FRONTEND=noninteractive && \
   echo "/usr/local/lib" > /etc/ld.so.conf.d/libc.conf && \
   export MAKEFLAGS="-j$[$(nproc) + 1]" && \
@@ -27,9 +25,7 @@ RUN \
   BUILD_REQS='automake autotools-dev curl g++ git libcurl4-gnutls-dev libfuse-dev libssl-dev libxml2-dev make pkg-config' && \
   apt-get -y install $BUILD_REQS && \
   DIR=$(mktemp -d) && \
-  cd ${DIR}
-
-RUN \
+  cd ${DIR} \
   wget https://github.com/s3fs-fuse/s3fs-fuse/archive/refs/tags/v1.91.tar.gz -O s3fs.tar.gz && \
   tar -xzf s3fs.tar.gz -C . --strip-components=1 && \
   ./autogen.sh && \
